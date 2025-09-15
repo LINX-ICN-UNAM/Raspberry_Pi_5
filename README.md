@@ -1,7 +1,5 @@
 # 🚀 Guía de Configuración y Uso de Raspberry Pi
 
-# 🚀 Guía de Configuración y Uso de Raspberry Pi
-
 Este repositorio contiene una guía paso a paso para configurar y trabajar con una **Raspberry Pi**, desde la preparación del sistema operativo hasta la conexión remota y el uso de hardware adicional.  
 
 ---
@@ -32,7 +30,8 @@ Para cargar el sistema operativo se utilizará **Raspberry Pi Imager**, que pued
 
 Este software se encargará de **formatear y grabar el Sistema Operativo (SO)** en la microSD.  
 
-📷 *Espacio para imagen del software Raspberry Pi Imager*  
+<img src="img/Raspberry%20Pi%20Imager%20v1.gif" alt="Raspberry Pi Imager"/>
+
 
 En la ventana principal se deben seleccionar las siguientes opciones (con la microSD ya conectada):  
 
@@ -40,11 +39,14 @@ En la ventana principal se deben seleccionar las siguientes opciones (con la mic
 - **Sistema Operativo**: Raspberry Pi OS (64-Bit)  
 - **Almacenamiento**: Ruta de la microSD *(se detecta automáticamente)*  
 
-✅ Luego dar clic en **Aceptar**  
+✅ Luego dar clic en **Siguiente**  
+Se desplegará una ventana preguntando por la configuración personalizada del Sistema Operativo (SO). Para editarlos se selecciona *EDITAR AJUSTES* 
+
+<img src="img/Raspberry%20Pi%20Imager%205.jpg" alt="Raspberry Pi Imager Set-Up Servicio" />
 
 ---
 
-#### ⚙️ Ajustes de personalización del SO
+#### ⚙️ Ajustes de Personalización del SO
 Al seleccionar esta opción se abrirá una ventana con **tres menús de configuración**:  
 
 **1. General**
@@ -59,6 +61,9 @@ Al seleccionar esta opción se abrirá una ventana con **tres menús de configur
   - Zona Horaria: `America/Mex_City`  
   - Distribución del teclado: `us` *(opcional)*  
 
+<img src="img/Raspberry%20Pi%20Imager%206.jpg" alt="Raspberry Pi Imager Set-Up General2" width="490" height="420"/>
+<img src="img/Raspberry%20Pi%20Imager%207.jpg" alt="Raspberry Pi Imager Set-Up General2" width="490" height="420"/>
+
 **2. Servicio**
 - Activar SSH  
 - Usar autenticación por contraseña  
@@ -66,11 +71,14 @@ Al seleccionar esta opción se abrirá una ventana con **tres menús de configur
 **3. Opciones**
 - Reproducir sonido *(opcional)*  
 
-📷 *Espacio para imágenes del menú de configuración*  
+<img src="img/Raspberry%20Pi%20Imager%208.jpg" alt="Raspberry Pi Imager Set-Up Servicio" width="490" height="420"/>
+<img src="img/Raspberry%20Pi%20Imager%209.jpg" alt="Raspberry Pi Imager Set-Up Opciones" width="490" height="420"/>
 
 ---
 
 🔧 Con esto la microSD queda lista para insertarse en la **Raspberry Pi** y arrancar el sistema operativo.  
+
+<img src="img/Raspberry%20Pi%20Imager%20v2.gif" alt="Raspberry Pi Imager"/>
 
 ---
 
