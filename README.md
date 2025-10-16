@@ -1,6 +1,16 @@
-**🚀 Guía de Configuración y Uso de Raspberry Pi**
+# **🚀 Raspberry Pi 5**
 
-Este repositorio contiene una guía paso a paso para configurar y trabajar con una **Raspberry Pi**, desde la preparación del sistema operativo hasta la conexión remota y el uso de hardware adicional.  
+# 🧭 Propósito del Repositorio
+
+Este repositorio tiene como objetivo proporcionar una **guía completa y modular** para el uso educativo y profesional de la **Raspberry Pi**, enfocándose en:
+- La configuración inicial del sistema operativo y red.
+- La creación de entornos Python para ejecución de scripts.
+- El control de hardware mediante GPIO.
+- La automatización de procesos con `systemd`.
+
+Cada sección puede consultarse de forma independiente según las necesidades del usuario.
+
+# 🗂️ Estructura del Repositorio
 
 - [📂 Sección 1: Configuración básica](Seccion_1.md#-sección-1-configuración-básica)
   - [💾 Cargar Sistema Operativo en microSD](Seccion_1.md#-cargar-sistema-operativo-en-microsd)
@@ -38,16 +48,24 @@ Este repositorio contiene una guía paso a paso para configurar y trabajar con u
     - [▶️ Ejecución del Script](Tutoriales.md#️-ejecución-del-script)
     - [🧾 Referencias](Tutoriales.md#-referencias)
 
----
+## 🧰 Requisitos Generales
 
-## 🧭 Propósito del Repositorio
+| Tipo | Elemento | Descripción |
+|------|-----------|-------------|
+| 💻 Hardware | Raspberry Pi 3B, 4B o superior | Con conectividad WiFi o Ethernet |
+| 🔋 Alimentación | Fuente de 5V / 3A (USB-C o microUSB según modelo) | Estable y de buena calidad |
+| 💾 Almacenamiento | microSD ≥ 16 GB | Con sistema Raspberry Pi OS (Bookworm recomendado) |
+| 🧠 Software base | Raspberry Pi OS con Desktop o Lite | Actualizado mediante `sudo apt update && sudo apt upgrade` |
+| 🔧 Acceso remoto | SSH y/o VNC habilitados | Para control sin monitor |
 
-Este repositorio tiene como objetivo proporcionar una **guía completa y modular** para el uso educativo y profesional de la **Raspberry Pi**, enfocándose en:
-- La configuración inicial del sistema operativo y red.
-- La creación de entornos Python para ejecución de scripts.
-- El control de hardware mediante GPIO.
-- La automatización de procesos con `systemd`.
+> 💡 *Todos los ejemplos y scripts fueron probados en Raspberry Pi OS (Bookworm, 64-bit).*
 
-Cada sección puede consultarse de forma independiente según las necesidades del usuario.
+## 🧾 Contribución
 
+Las contribuciones son bienvenidas mediante *pull requests* o sugerencias en *issues*.
 
+- **Responsable del proyecto**: Gustavo Medina Tanco  
+- **Colaboradores**: Alfredo Rodríguez
+- **Institución**: Laboratorio de Instrumentación Espacial (LINX-ICN-UNAM)
+
+> ⚙️ Si deseas adaptar esta guía adelante.
