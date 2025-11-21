@@ -5,13 +5,19 @@
     - [🔢 IP Fija](#-ip-fija)
     - [🔌 Conexión con cable Ethernet](#-conexión-con-cable-ethernet)
     - [💻 Conexión por VSCode](#-conexión-por-vscode)
+    - [📶 Hotspot](#-hotspot)
   - [📜 Scripts](#-scripts)
-    - [📚 Librerias de python](#-librerias-de-python)
+    - [📚 Librerías de python](#-librerías-de-python)
+    - [⚙️ apt vs pip](#️-apt-vs-pip)
+      - [🔧 `apt` → nivel del sistema operativo](#-apt--nivel-del-sistema-operativo)
+      - [🐍 `pip` → nivel de Python](#-pip--nivel-de-python)
+      - [⚠️ Recomendaciones prácticas (especialmente en Raspberry Pi)](#️-recomendaciones-prácticas-especialmente-en-raspberry-pi)
+      - [🧠 En resumen](#-en-resumen)
     - [🐍 Virtual Enviroments en Python](#-virtual-enviroments-en-python)
     - [⚙️ Cargar Script](#️-cargar-script)
   - [🔧 Sensores y Hardware](#-sensores-y-hardware)
     - [🔌 Biblioteca GPIO](#-biblioteca-gpio)
-    - [Script al arrancar Raspberry Pi](#script-al-arrancar-raspberry-pi)
+    - [🌅 Script al arrancar Raspberry Pi](#-script-al-arrancar-raspberry-pi)
 
 ## 🌐 Redes y Conexiones
 
@@ -58,6 +64,8 @@ Algunas opciones para IPs:
 - Hostpot: `192.168.4.1/24`
 - Colmena: `192.168.10.1/24`
 
+
+
 📷 *Espacio para imagen de menú principal de nmtui*  
 📷 *Espacio para imagen de edición de conexión y configuración manual de IP*  
 
@@ -86,11 +94,138 @@ Para quitar una llave asociada a algun Host SSH, en `powershell`:
 ssh-keygen -R <hostname/ip>
 ```
 
----
+### 📶 Hotspot
+
+Para configurar un Hotspot lo mas facil es directo desde Raspberry Pi utilizando el escritorio. Para ello se puede utilizar un cable HDMI o un escritorio virtual con RealVNC. Una vez en el escritorio remoto 
+
+Para conectarse a una red por defecto.
+
+```bash
+sudo nmcli connection modify <nombre-de-red> connection.autoconnect yes
+```
 
 ## 📜 Scripts
 
-### 📚 Librerias de python
+### 📚 Librerías de python
+
+Python es el lenguaje más utilizado en Raspberry Pi para automatización, robótica y control de hardware.  Antes de comenzar a escribir scripts, es importante conocer y gestionar correctamente las librerías necesarias.
+
+Las **librerías** (o módulos) son colecciones de código que amplían las capacidades de Python.  
+Permiten controlar los pines GPIO, interactuar con sensores, realizar cálculos matemáticos, manejar redes, entre otros.
+
+Ejemplo de librerías comunes en Raspberry Pi:
+
+| Librería | Descripción | Uso típico |
+|-----------|--------------|------------|
+| `gpiozero` | Abstracción sencilla para controlar pines GPIO. | Encender LEDs, leer sensores, controlar motores. |
+| `rpi-lgpio` | Interfaz moderna y compatible con Raspberry Pi 5 para manejo de GPIO. | Control preciso de pines digitales. |
+| `RPi.GPIO` | Librería clásica de Raspberry Pi (ahora reemplazada por `rpi-lgpio`). | Scripts heredados o versiones anteriores. |
+| `time` | Control de temporización en scripts. | Retardos, bucles de espera. |
+| `os` | Interacción con el sistema operativo. | Acceso a rutas, ejecución de comandos. |
+| `sys` | Control de argumentos y salida del programa. | Integración con servicios del sistema. |
+
+
+### ⚙️ apt vs pip
+
+Tanto `apt` como `pip` sirven para **instalar software**, pero trabajan en **niveles diferentes del sistema**:
+
+| Herramienta | Nivel del sistema | Qué instala | Fuente | Ejemplo de uso |
+|--------------|------------------|--------------|---------|----------------|
+| **`apt` (Advanced Package Tool)** | Sistema operativo (nivel global) | Programas completos, dependencias del sistema y librerías C/C++ necesarias para Python u otros lenguajes. | Repositorios oficiales de Debian/Raspberry Pi OS. | `sudo apt install python3-gpiozero` |
+| **`pip` (Python Package Installer)** | Entorno de Python (global o virtual) | Paquetes y módulos escritos en Python (no programas del sistema). | Repositorio oficial de Python: [PyPI.org](https://pypi.org) | `pip install gpiozero` |
+
+---
+
+#### 🔧 `apt` → nivel del sistema operativo
+
+`apt` instala software gestionado por el **gestor de paquetes del sistema (Debian)**.  
+Instalar algo con `apt` implica modificar archivos en directorios del sistema, como `/usr/lib` o `/usr/bin`. Usa `sudo` para poder instalarlas globalmente.
+
+Ejemplo:
+```bash
+sudo apt install python3-gpiozero
+```
+
+Esto instala:
+- El **intérprete de Python** (si no está instalado).
+- El **paquete gpiozero** desde los repositorios de Raspberry Pi.
+- Todas las **dependencias de sistema** necesarias (por ejemplo, drivers o librerías C subyacentes).
+
+**Ventajas:**
+- Alta estabilidad: los paquetes fueron probados para tu versión del sistema operativo.
+- Integración con el sistema: útil para scripts que se ejecutan al arrancar la Raspberry Pi.
+
+**Desventajas:**
+- Suele traer versiones más antiguas.
+- No siempre incluye las últimas actualizaciones de PyPI.
+
+---
+
+#### 🐍 `pip` → nivel de Python
+
+`pip` instala paquetes directamente desde el **repositorio de Python (PyPI)**.  
+Actúa dentro del entorno de Python (ya sea el del sistema o uno virtual con `venv`). No se necesita usar `sudo` dentro de [ambientes virtuales](#-virtual-enviroments-en-python).
+
+Ejemplo:
+
+```bash
+pip install gpiozero
+```
+
+Esto descarga el paquete más reciente directamente desde Internet y lo instala en:
+- `~/.local/lib/python3.x/site-packages` (usuario actual), o  
+- dentro del [entorno virtual](#-virtual-enviroments-en-python) (`.venv/lib/...`) si lo usas.
+
+**Ventajas:**
+- Acceso a las **últimas versiones**.
+- Puedes usarlo en entornos aislados (sin afectar al sistema).
+- Ideal para proyectos o desarrollo.
+
+**Desventajas:**
+- No gestiona dependencias del sistema (si una librería depende de código C, puede fallar).
+- Puede entrar en conflicto con versiones instaladas por `apt`.
+
+---
+
+#### ⚠️ Recomendaciones prácticas (especialmente en Raspberry Pi)
+
+1. **Usa `apt` para instalar Python y librerías del sistema**, por ejemplo:
+   ```bash
+   sudo apt install python3 python3-venv python3-pip python3-gpiozero
+   ```
+
+2. **Usa `pip` para instalar paquetes adicionales de PyPI**, especialmente en entornos virtuales:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install numpy matplotlib
+   ```
+
+3. **Evita mezclar `sudo pip` con `apt`**  
+   Esto puede sobrescribir paquetes del sistema y causar errores como:
+   ```
+   ImportError: cannot import name 'xyz' from partially initialized module
+   ```
+
+4. Si realmente necesitas instalar algo globalmente (por ejemplo, para scripts del sistema):
+   ```bash
+   sudo pip install --break-system-packages nombre_paquete
+   ```
+   pero **solo si sabes lo que haces** y documentas el motivo.
+
+Se recomienda en nuestro caso instalar las librerias en un [ambiente virtual](#-virtual-enviroments-en-python) utilizando `pip` pero habrá librerías que se deberan instalar globalmente para construir las usadas en el ambiente virtual. Esas librerías necesarias deberán ser instaladas usando  `apt`.
+
+#### 🧠 En resumen
+
+| Criterio | `apt` | `pip` |
+|-----------|--------|--------|
+| Nivel de instalación | Sistema operativo | Entorno de Python |
+| Fuente | Repositorios de Debian/Raspberry Pi OS | PyPI (Python Package Index) |
+| Actualizaciones | Lentas pero seguras | Rápidas, versión más reciente |
+| Seguridad | Alta, probado por la distro | Depende del paquete |
+| Recomendado para | Librerías del sistema y Python base | Paquetes adicionales y desarrollo |
+
+
 
 ### 🐍 Virtual Enviroments en Python
 
@@ -100,9 +235,9 @@ Para crear ambientes que puedan acceder a las librerias del sistema
 python3 -m venv --system-site-packages .venv
 ```
 
-Donde `.venv` es el nombre del ambiente, puede ser cambiado pero no se recomienda por simplicidad, a menos que necesites varios ambientes. el flag `--system-site-packages` permite que el ambiente virtual pueda usar las bibliotecas globales, osea las instaladas con `sudo apt`.
+Donde `.venv` es el nombre del ambiente, puede ser cambiado pero no se recomienda por simplicidad, a menos que necesites varios ambientes. El flag `--system-site-packages` permite que el ambiente virtual pueda usar las bibliotecas globales, es decir las instaladas con `sudo apt`.
 
- Para activar un virtual enviroment:
+ Para activar el virtual enviroment `.venv`:
 
 ```bash
 source .venv/bin/activate
@@ -120,8 +255,13 @@ Una buena practica para poder compartir el codigo es dar las librerias instalada
 pip freeze > requirements.txt
 ```
 
-Esto crea un archivo `requirements.txt` en el directorio de trabajo actual.
+Esto crea un archivo `requirements.txt` en el directorio de trabajo actual. Con eso se pueden exportar las listas de las librerias instaladas, para instalarlas se puede usar:
 
+```bash
+pip install -r requirements.txt
+```
+
+Cabe resaltar que, con este metodo, habra librerias que no podran importarse en el `.venv` adecuadamente, po lo que se recomienda en nuestro caso [instalar las librerías](#-pip--nivel-de-python) en un ambiente virtual utilizando `pip` pero habrá librerías que se deberan [instalar globalmente](#-apt--nivel-del-sistema-operativo) para construir las usadas en el ambiente virtual. Esas librerías necesarias deberán ser instaladas usando  `apt`.
 ### ⚙️ Cargar Script
 
 Para cargar un script en tu Raspberry Pi, sigue estos pasos:
@@ -184,13 +324,13 @@ Para poder acceder al GPIO se pueden utilizar las siguientes bibliotecas en todo
 
 - `gpiozero`: contiene *RPi.GPIO* y *rpi-lgpio*, se recomienda esta opcion por compatibilidad con `lgpio` de backend
   
-  ```bash
+   ```bash
    sudo apt install gpiozero
    ```
 
 Con esto la libreria GPIO queda configurada para usar el kernel de Linux como intermediario. Aunque es mas rapido utilizar `RPi.GPIO` ya que es mucho más rápido trabajar directamente con el Hardware que pedirle al controlador del dispositivo del kernel que lo haga. Sin embargo, no ofrecen protección contra el acceso concurrente y pueden entrar en conflicto entre sí, entre sí mismas y con las bibliotecas que usan el kernel.
 
-### Script al arrancar Raspberry Pi
+### 🌅 Script al arrancar Raspberry Pi
 
 Para ello necesitamos tener un script de python. Adicionalmente se puede tener un viertual enviroment asociado.
 
@@ -241,14 +381,22 @@ WantedBy=multi-user.target
 
 Donde:
 
-- **Unit**
-  - **Description**
-  - **After**
-- **Service**
-  - **ExecStart**
-  - **User**
-- **Install**
-  - **WantedBy**
+- **Unit** Define la información general del servicio y sus dependencias con otros procesos o estados del sistema.
+  - **Description** Texto descriptivo que indica qué hace el servicio.
+  - **After** Indica cuándo debe iniciarse el servicio respecto a otros.
+- **Service** Contiene la configuración principal de ejecución del servicio, indicando qué comando se ejecuta y bajo qué condiciones.
+  - **Type** Define cómo se comporta el servicio.
+  - **ExecStart** Comando que ejecutará el servicio.
+  - **WorkingDirectory** Directorio de trabajo desde el cual se ejecuta el servicio (opcional, pero recomendable si el script depende de rutas relativas).
+  - **User** Usuario bajo el cual se ejecuta el servicio.
+  - **Restart** Indica si el servicio debe reiniciarse automáticamente en caso de fallo.
+    - `no` no reinicia.
+    - `on-failure` reinicia solo si el proceso termina con error.
+    - `always` reinicia siempre que el proceso se detenga.
+  - **RestartSec** Tiempo (en segundos) que espera antes de intentar reiniciar el servicio.
+- **Install** Indica cómo se integra el servicio con los objetivos (targets) del sistema, es decir, en qué momento o estado se habilitará.
+  - **WantedBy** Define el target o “nivel de ejecución” en el que se habilita el servicio automáticamente. 
+    - `multi-user.target` es el más común en sistemas Linux sin entorno gráfico, ya que equivale al arranque completo del sistema.
 
 Comandos utiles en nano
 
@@ -273,7 +421,7 @@ Ver estado del servicio:
 sudo systemctl status nombre-del-servicio.service
 ```
 
-Y habilitar el servicio:
+Habilitar el servicio.
 
 ```bash
 sudo systemctl enable nombre-del-servicio.service

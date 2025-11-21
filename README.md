@@ -32,27 +32,42 @@ Cada sección puede consultarse de forma independiente según las necesidades de
     - [🔢 IP Fija](Seccion_2.md#-ip-fija)
     - [🔌 Conexión con cable Ethernet](Seccion_2.md#-conexión-con-cable-ethernet)
     - [💻 Conexión por VSCode](Seccion_2.md#-conexión-por-vscode)
+    - [📶 Hotspot](Seccion_2.md#-hotspot)
   - [📜 Scripts](Seccion_2.md#-scripts)
-    - [📚 Librerias de python](Seccion_2.md#-librerias-de-python)
+    - [📚 Librerías de python](Seccion_2.md#-librerías-de-python)
+    - [⚙️ apt vs pip](Seccion_2.md#️-apt-vs-pip)
+      - [🔧 `apt` → nivel del sistema operativo](Seccion_2.md#-apt--nivel-del-sistema-operativo)
+      - [🐍 `pip` → nivel de Python](Seccion_2.md#-pip--nivel-de-python)
+      - [⚠️ Recomendaciones prácticas (especialmente en Raspberry Pi)](Seccion_2.md#️-recomendaciones-prácticas-especialmente-en-raspberry-pi)
+      - [🧠 En resumen](Seccion_2.md#-en-resumen)
     - [🐍 Virtual Enviroments en Python](Seccion_2.md#-virtual-enviroments-en-python)
     - [⚙️ Cargar Script](Seccion_2.md#️-cargar-script)
   - [🔧 Sensores y Hardware](Seccion_2.md#-sensores-y-hardware)
     - [🔌 Biblioteca GPIO](Seccion_2.md#-biblioteca-gpio)
-    - [Script al arrancar Raspberry Pi](Seccion_2.md#script-al-arrancar-raspberry-pi)
-- [Tutoriales](Tutoriales.md#tutoriales)
-  - [`HelloWorld.py`](Tutoriales.md#helloworldpy)
+    - [🌅 Script al arrancar Raspberry Pi](Seccion_2.md#-script-al-arrancar-raspberry-pi)
+- [📚 Tutoriales](Tutoriales.md#-tutoriales)
+  - [✋ `HelloWorld.py`](Tutoriales.md#-helloworldpy)
     - [🧰 Requerimientos del Sistema](Tutoriales.md#-requerimientos-del-sistema)
     - [📦 Dependencias Necesarias](Tutoriales.md#-dependencias-necesarias)
     - [🧪 Crear y Activar un Entorno Virtual (*Opcional*)](Tutoriales.md#-crear-y-activar-un-entorno-virtual-opcional)
     - [📁 Crear el Script `HelloWorld.py`](Tutoriales.md#-crear-el-script-helloworldpy)
     - [▶️ Ejecución del Script](Tutoriales.md#️-ejecución-del-script)
     - [🧾 Referencias](Tutoriales.md#-referencias)
+  - [💡 `blink.py`](Tutoriales.md#-blinkpy)
+    - [🧰 Requerimientos del Sistema](Tutoriales.md#-requerimientos-del-sistema-1)
+    - [📦 Dependencias Necesarias](Tutoriales.md#-dependencias-necesarias-1)
+    - [🧪 Crear y Activar un Entorno Virtual (*Opcional*)](Tutoriales.md#-crear-y-activar-un-entorno-virtual-opcional-1)
+    - [📁 Crear el Script `blink.py`](Tutoriales.md#-crear-el-script-blinkpy)
+    - [🛠 Conectar el Circuito](Tutoriales.md#-conectar-el-circuito)
+    - [▶️ Ejecución del Script](Tutoriales.md#️-ejecución-del-script-1)
+    - [🧾 Referencias](Tutoriales.md#-referencias-1)
+
 
 ## 🧰 Requisitos Generales
 
 | Tipo | Elemento | Descripción |
 |------|-----------|-------------|
-| 💻 Hardware | Raspberry Pi 3B, 4B o superior | Con conectividad WiFi o Ethernet |
+| 💻 Hardware | Raspberry Pi 5 | Con conectividad WiFi o Ethernet |
 | 🔋 Alimentación | Fuente de 5V / 3A (USB-C o microUSB según modelo) | Estable y de buena calidad |
 | 💾 Almacenamiento | microSD ≥ 16 GB | Con sistema Raspberry Pi OS (Bookworm recomendado) |
 | 🧠 Software base | Raspberry Pi OS con Desktop o Lite | Actualizado mediante `sudo apt update && sudo apt upgrade` |

@@ -1,3 +1,8 @@
+'''
+Script para hacer parpadear un LED conectado al GPIO de una Raspberry Pi usando la biblioteca gpiozero.
+try, except KeyboardInterrupt para manejar la interrupción del usuario con Ctrl+C.
+'''
+
 from gpiozero import LED
 from time import sleep
 
