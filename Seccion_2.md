@@ -5,7 +5,7 @@
     - [🔢 IP Fija](#-ip-fija)
     - [🔌 Conexión con cable Ethernet](#-conexión-con-cable-ethernet)
     - [💻 Conexión por VSCode](#-conexión-por-vscode)
-    - [📶 Hotspot](#-hotspot)
+    - [📶 Hostpot](#-hostpot)
   - [📜 Scripts](#-scripts)
     - [📚 Librerías de python](#-librerías-de-python)
     - [⚙️ apt vs pip](#️-apt-vs-pip)
@@ -94,14 +94,26 @@ Para quitar una llave asociada a algun Host SSH, en `powershell`:
 ssh-keygen -R <hostname/ip>
 ```
 
-### 📶 Hotspot
+Si eso no funciona se puede ir a la carpeta `.ssh` y borrar el contenido de `known_hosts` y `known_hosts.old`. A veces se cambia de llave SSH y VSCode reconoce ese cambio como un *man in the middle*.
 
-Para configurar un Hotspot lo mas facil es directo desde Raspberry Pi utilizando el escritorio. Para ello se puede utilizar un cable HDMI o un escritorio virtual con RealVNC. Una vez en el escritorio remoto 
+### 📶 Hostpot
+
+Para configurar un Hostpot lo mas facil es directo desde Raspberry Pi utilizando el escritorio. Para ello se puede utilizar un cable HDMI o un escritorio virtual con RealVNC. Una vez en el escritorio remoto.
+
+Para conectarse a una red especifica:
+```bash
+sudo nmcli connection up "nombre-de-red"
+```
+
+Para desconectarse:
+```bash
+sudo nmcli connection down "nombre-de-red"
+```
 
 Para conectarse a una red por defecto.
 
 ```bash
-sudo nmcli connection modify <nombre-de-red> connection.autoconnect yes
+sudo nmcli connection modify "nombre-de-red" connection.autoconnect yes
 ```
 
 ## 📜 Scripts
