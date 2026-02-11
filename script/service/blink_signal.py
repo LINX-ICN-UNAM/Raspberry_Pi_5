@@ -24,7 +24,7 @@ def signal_handler(signum, frame):
     }
         
     signal_name = signal_names.get(signum, f'Señal {signum}')
-    logger.info(f"📡 Recibida {signal_name}. Iniciando shutdown graceful...")
+    logger.info(f"Recibida {signal_name}. Iniciando shutdown graceful...")
     
     # Acciones específicas por tipo de señal
     if signum == signal.SIGTERM:
@@ -44,17 +44,17 @@ def signal_handler(signum, frame):
 
 def cleanup_gpio():
     """Función dedicada para limpiar GPIO"""
-    logger.info("🧹 Limpiando recursos GPIO...")
+    logger.info("Limpiando recursos GPIO...")
     try:
         GPIO.cleanup()
-        logger.info("✅ GPIO limpiado correctamente")
+        logger.info("GPIO limpiado correctamente")
     except Exception as e:
-        logger.error(f"❌ Error limpiando GPIO: {e}")
+        logger.error(f"Error limpiando GPIO: {e}")
 
 def custom_actions(signum):
     """Acciones personalizadas basadas en la señal"""
     if signum == signal.SIGUSR1:
-        logger.info("🔧 Acción personalizada: Cambiando patrón de blink")
+        logger.info("Acción personalizada: Cambiando patrón de blink")
         return "change_pattern"
     return None
 
@@ -65,24 +65,19 @@ signal.signal(signal.SIGHUP, signal_handler)   # Recarga
 signal.signal(signal.SIGUSR1, signal_handler)  # Señal personalizada
 
 # Información del servicio
-logger.info(f"🚀 Servicio iniciado - PID: {os.getpid()}, Directorio: {os.getcwd()}")
+logger.info(f"Servicio iniciado - PID: {os.getpid()}, Directorio: {os.getcwd()}")
 
 # Configuración GPIO
-try:
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    
-    LED_PIN = 17  # GPIO 17 (pin físico 11)
-    GPIO.setup(LED_PIN, GPIO.OUT, initial=GPIO.LOW)
-    
-    logger.info(f"✅ GPIO {LED_PIN} configurado como OUTPUT")
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
-except Exception as e:
-    logger.error(f"❌ Error configurando GPIO: {e}")
-    sys.exit(1)
+LED_PIN = 17  # GPIO 17 (pin físico 11)
+GPIO.setup(LED_PIN, GPIO.OUT, initial=GPIO.LOW)
+
+logger.info(f"GPIO {LED_PIN} configurado como OUTPUT")
 
 # Bucle principal con manejo de estado
-logger.info("🔴 Iniciando patrón de blink...")
+logger.info("Iniciando Blink...")
 
 try:
     blink_state = True
@@ -93,16 +88,16 @@ try:
         
         # Log cada 10 ciclos para no saturar
         if int(time.time()) % 10 == 0:
-            logger.info(f"💡 LED {current_state} - Servicio activo")
+            logger.info(f"LED {current_state} - Servicio activo")
         
         # Cambiar estado
         blink_state = not blink_state
         time.sleep(1)
         
 except Exception as e:
-    logger.error(f"💥 Error en el bucle principal: {e}")
+    logger.error(f"Error en el bucle principal: {e}")
     
 finally:
     # Garantizar limpieza incluso si hay excepciones
     cleanup_gpio()
-    logger.info("👋 Servicio terminado")
+    logger.info("Servicio terminado")

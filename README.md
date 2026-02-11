@@ -3,6 +3,7 @@
 # 🧭 Propósito del Repositorio
 
 Este repositorio tiene como objetivo proporcionar una **guía completa y modular** para el uso educativo y profesional de la **Raspberry Pi**, enfocándose en:
+
 - La configuración inicial del sistema operativo y red.
 - La creación de entornos Python para ejecución de scripts.
 - El control de hardware mediante GPIO.
@@ -62,11 +63,10 @@ Cada sección puede consultarse de forma independiente según las necesidades de
     - [▶️ Ejecución del Script](Tutoriales.md#️-ejecución-del-script-1)
     - [🧾 Referencias](Tutoriales.md#-referencias-1)
 
-
 ## 🧰 Requisitos Generales
 
 | Tipo | Elemento | Descripción |
-|------|-----------|-------------|
+| ------ | ----------- | ------------- |
 | 💻 Hardware | Raspberry Pi 5 | Con conectividad WiFi o Ethernet |
 | 🔋 Alimentación | Fuente de 5V / 3A (USB-C o microUSB según modelo) | Estable y de buena calidad |
 | 💾 Almacenamiento | microSD ≥ 16 GB | Con sistema Raspberry Pi OS (Bookworm recomendado) |

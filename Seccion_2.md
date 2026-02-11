@@ -274,6 +274,8 @@ pip install -r requirements.txt
 ```
 
 Cabe resaltar que, con este metodo, habra librerias que no podran importarse en el `.venv` adecuadamente, po lo que se recomienda en nuestro caso [instalar las librerías](#-pip--nivel-de-python) en un ambiente virtual utilizando `pip` pero habrá librerías que se deberan [instalar globalmente](#-apt--nivel-del-sistema-operativo) para construir las usadas en el ambiente virtual. Esas librerías necesarias deberán ser instaladas usando  `apt`.
+
+
 ### ⚙️ Cargar Script
 
 Para cargar un script en tu Raspberry Pi, sigue estos pasos:
