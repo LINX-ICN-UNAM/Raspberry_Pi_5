@@ -165,6 +165,30 @@ PuTTY permite el acceso remoto a una terminal mediante protocolo SSH pero tiene 
 
 ### 🖥️ Conexión con RealVNC
 
+**Instalación RealVNC**  
+Descargar desde la página oficial
+[RealVNC](https://www.realvnc.com/en/connect/download/viewer/)  
+Elegir el sistema operativo del dispositivo al que se va a instalar.  
+Nota: Debe ser VNC Viewer.  
+
+<img width="1366" height="641" alt="image" src="https://github.com/user-attachments/assets/7537afb7-43ef-4597-ada6-0418d3448fc1" />  
+ 
+Elegimos el idioma, aceptamos los terminos y condiciones, elegimos la ubicación del programa y seleccionamos instalar. 
+
+<img width="1364" height="641" alt="image" src="https://github.com/user-attachments/assets/e73404f1-3f51-4d76-bbe1-789bc572768b" />  
+
+Será necesario crear un cuenta, si ya se tiene solo iniciar sesión.  
+
+<img width="1365" height="642" alt="image" src="https://github.com/user-attachments/assets/98fe447e-2cfc-4922-bf0e-47996d784b47" />
+
+Al iniciar sesión se sincronizarán todas las conexiones que tenemos en otros equipos.
+
+<img width="885" height="624" alt="image" src="https://github.com/user-attachments/assets/47e903ab-beb5-4c24-9795-9a8427b55929" />    
+
+---
+
+**Conectar PC con Raspberry PI 5.**
+
 Para poder conectarse con **RealVNC**, primero es necesario habilitar el servidor VNC en la Raspberry Pi. Lo mas recomendable es hacer esto desde PuTTY o localmente.
 
 1. Acceder a la terminal localmente o mediante PuTTY.  
