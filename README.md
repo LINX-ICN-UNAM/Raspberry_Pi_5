@@ -70,7 +70,7 @@ Cada sección puede consultarse de forma independiente según las necesidades de
 | 💻 Hardware | Raspberry Pi 5 | Con conectividad WiFi o Ethernet |
 | 🔋 Alimentación | Fuente de 5V / 3A (USB-C o microUSB según modelo) | Estable y de buena calidad |
 | 💾 Almacenamiento | microSD ≥ 16 GB | Con sistema Raspberry Pi OS (Bookworm recomendado) |
-| 🧠 Software base | Raspberry Pi OS con Desktop o Lite | Actualizado mediante `sudo apt update && sudo apt upgrade` |
+| 🧠 Software base | **Sistema Operativo:** Raspberry Pi OS (64-bit) <br> **Base:** Debian GNU/Linux 12 (Bookworm) <br> **Kernel:** Linux 6.12.62+rpt-rpi-2712 <br> **Arquitectura:** ARM64 (aarch64) | Obtenido del **Raspberry Pi Imager** en *Legacy* y actualizado mediante `sudo apt update && sudo apt upgrade` |
 | 🔧 Acceso remoto | SSH y/o VNC habilitados | Para control sin monitor |
 
 > 💡 *Todos los ejemplos y scripts fueron probados en Raspberry Pi OS (Bookworm, 64-bit).*
